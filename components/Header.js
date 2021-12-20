@@ -18,12 +18,13 @@ const styles = StyleSheet.create({
   header: {
       paddingTop: 70,
       height: 130,
-      backgroundColor: '#99DDCC',
+      backgroundColor: '#00ADB5',
   },
   text: {
-      fontSize: 25,
-      color: '#F6F6F6',
-      textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#F6F6F6',
+    textAlign: 'center',
   }
 });
 

@@ -2,33 +2,37 @@
 
 import {
   StyleSheet,
-  TouchableHighlight,
+  TouchableOpacity,
   Text,
 } from 'react-native';
 
-const ListItem = ({item}) => {
+const ListItem = ({task, deleteTask}) => {
 
-    return (
-      <TouchableHighlight>
+  const handleDeleteTask = () => {
+    deleteTask(task.id)
+  }
+
+  return (
+    <TouchableOpacity 
+      onPress={handleDeleteTask}>
         <Text style={styles.text}>
-          {item.text}
+          {task.text}
         </Text>
-        
-      </TouchableHighlight>
-    );
-  };
+    </TouchableOpacity>
+  );
+};
   
-  const styles = StyleSheet.create({
-    text: {
-      padding: 20,
-      marginTop: 15,
-      marginHorizontal: 20,
-      fontSize: 22,
-      backgroundColor: '#F6F6F6',
-      borderRadius: 10,
-      borderWidth: 1,
-      borderColor: '#99DDCC',
-    }
-  });
-  
-  export default ListItem; 
+const styles = StyleSheet.create({
+  text: {
+    padding: 20,
+    marginTop: 15,
+    marginHorizontal: 20,
+    fontSize: 22,
+    backgroundColor: '#F6F6F6',
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: '#00ADB5',
+  }
+});
+
+export default ListItem; 

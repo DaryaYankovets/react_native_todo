@@ -5,31 +5,40 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  Alert,
+  TouchableOpacity,
 } from 'react-native';
 
 const FormItem = ({addTask}) => {
-  const [task, setTask] = useState('');
+  const [text, setText] = useState('');
 
-  const handleChangeText = (text) => {
-    setTask(text);
+  const handleChangeText = (textTask) => {
+    setText(textTask);
   } 
 
   const handleAddTask = () => {
-    addTask(task);
-    setTask('');
+    if(text) {
+      addTask(text);
+      setText('');
+    } else {
+      Alert.alert('Введите задачу');
+    }
   }
 
   return (
     <View >
       <TextInput 
         style={styles.input}
+        value={text}
         onChangeText={handleChangeText}
-        placeholder="Введите задачу..."/>
-    <Button 
-      title={'Добавить'}
-      style={styles.btn}
-      onPress={handleAddTask}/>
+        placeholder="Введите задачу..."
+      />
+      
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={handleAddTask} >
+          <Text style={styles.text}>ДОБАВИТЬ</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -38,11 +47,18 @@ const styles = StyleSheet.create({
   input: {
     padding: 15,
     marginHorizontal: 20,
+    marginTop: 17,
     borderBottomWidth: 2,
-    borderColor: '#99DDCC',
+    borderColor: '#00ADB5',
+    fontSize: 18,
   },
-  btn: {
-    color: '#99DDCC',
+  button: {
+    margin: 20,
+    alignItems: 'center',
+  },
+  text: {
+    color: '#00ADB5',
+    fontSize: 20,
   }
 });
 
