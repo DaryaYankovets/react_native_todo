@@ -1,54 +1,47 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, {useState} from 'react';
 
-import React from 'react';
-import type {Node} from 'react';
 import {
   Button,
   SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
-  Alert, 
-  Image,
-  TouchableHighlight,
-  TouchableWithoutFeedback
+  Alert,
+  FlatList, 
 } from 'react-native';
 
-const App: () => Node = () => {
+import Header from './components/Header';
+import ListItem from './components/ListItem';
+import FormItem from './components/FormItem';
 
+
+const App = () => {
+  const [tasks, setTasks] = useState([
+    {id: 1, text: 'apple', complited: true},
+    {id: 2, text: 'orage', complited: false},
+    {id: 3, text: 'banana', complited: false},
+  ]);
+
+  const addTask = (task) => {
+    const index = tasks[tasks.lenght - 1].id + 1;
+    setTasks([...tasks, {id: index, text: task, complited: false}]);
+  }
+  
   return (
-    <SafeAreaView style={backgroundStyle}>
-      
-    </SafeAreaView>
+    <View>
+      <Header/> 
+      <FormItem addTask={addTask}/>
+      <View>
+        <FlatList data={tasks} renderItem={({ item }) => (
+          <ListItem item={item}/>
+        )}/>
+      </View> 
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+
 });
 
 export default App;

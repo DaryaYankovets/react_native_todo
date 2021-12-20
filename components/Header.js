@@ -1,28 +1,30 @@
 import React from "react";
 
-import type {Node} from 'react';
 import {
-  Button,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
-  Alert, 
-  Image,
-  TouchableWithoutFeedback
 } from 'react-native';
 
-const Header: () => Node = () => {
-    return (
-      <SafeAreaView style={styles.header}>
-        <Text steles>Список дел</Text>
-        
-      </SafeAreaView>
-    );
-  };
+const Header = () => {
+  return (
+    <View style={styles.header}>
+      <Text style={styles.text}>Список дел</Text> 
+    </View>
+  );
+};
   
-  const styles = StyleSheet.create({
-    
-  });
-  
-  export default Header;
+const styles = StyleSheet.create({
+  header: {
+      paddingTop: 70,
+      height: 130,
+      backgroundColor: '#99DDCC',
+  },
+  text: {
+      fontSize: 25,
+      color: '#F6F6F6',
+      textAlign: 'center',
+  }
+});
+
+export default Header;
