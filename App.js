@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-
+import React, {useState, useEffect} from 'react';
+import axios from "axios";
 import {
   Button,
   SafeAreaView,
@@ -16,15 +16,21 @@ import FormItem from './components/FormItem';
 
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {id: 1, text: 'Купить подарки на Новый год', complited: false},
-    {id: 2, text: 'Выучить English', complited: false},
-  ]);
+  const [tasks, setTasks] = useState([{id: null, title: ''}]);
+
+  useEffect( () => {
+    axios.get(
+      'https://jsonplaceholder.typicode.com/todos' , 
+      {params: {
+        _limit: 5,
+        _page: 2
+      }
+    }).then((response) => setTasks(response.data));
+  }, []); 
 
   const addTask = (task) => {
-    //const index = tasks[tasks.length - 1].id + 1;
     const index = Math.random().toString(36).substring(7);
-    setTasks([...tasks, {id: index, text: task, complited: false}]);
+    setTasks([...tasks, {id: index, title: task, complited: false}]);
   }
 
   const deleteTask = (id) => {

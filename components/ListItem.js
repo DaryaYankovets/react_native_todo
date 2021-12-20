@@ -16,7 +16,7 @@ const ListItem = ({task, deleteTask}) => {
     <TouchableOpacity 
       onPress={handleDeleteTask}>
         <Text style={styles.text}>
-          {task.text}
+          {task.title}
         </Text>
     </TouchableOpacity>
   );
